@@ -23,9 +23,16 @@ cc_library_static {
         "-Wuninitialized",
         "-Wno-self-assign",
     ],
+    target: {
+        android_arm: {
+            ldflags: ["-Wl,-znodelete"],
+        },
+        android_arm64: {
+            ldflags: ["-Wl,-znodelete"],
+        },
+    },
     sanitize: {
-        misc_undefined:["unsigned-integer-overflow", "signed-integer-overflow"],
-        cfi: true,
+        never: true,
     },
     shared_libs: [
         "liblog",
